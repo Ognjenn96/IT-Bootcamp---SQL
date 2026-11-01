@@ -8,9 +8,8 @@ AND status = 'played'; ------RESENJE JE 40
 
 ---Zadatak 2 Који стадион има највећи капацитет, а који је највећи стадион неког клуба?
 
-SELECT s.stadium_name, s.capacity,
-  t.team_name
-
+SELECT s.stadium_name AS najveci_stadion, s.capacity AS kapacitet,
+  t.team_name AS Klub
 FROM stadiums s
 JOIN teams t 
 ON s.stadium_id = t.stadium_id
@@ -75,16 +74,17 @@ limit 1; --- Peter Lindgren	9
 
 --- Zadatak 9 Који судија је у сезони 2024/25 имао највећи удео утакмица у којима је досуђен бар један пенал, дат или промашен
 
-SELECT m.referee_id,
+SELECT m.referee_name, 
 COUNT(DISTINCT e.match_id) * 100 /
 COUNT(DISTINCT m.match_id) AS udeo
-FROM workspace.default.matches m 
+FROM workspace.default.matches_flat m 
 LEFT JOIN workspace.default.match_events e
 ON m.match_id = e.match_id
 AND e.event_type IN ('penalty_goal' , 'penalty_miss')
 WHERE m.season = '2024/25'
-GROUP BY m.referee_id
+GROUP BY m.referee_name
 ORDER BY udeo DESC          -------------probao sam order by pre group by ali iz nekog razloga ne radi
-LIMIT 1;
+LIMIT 1;                       ----- ispravio sam zadatak, umesto tabele matches sam koristio matches_flat jer ta tabela sadrzi referee_name
+
 
 
