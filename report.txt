@@ -1,0 +1,35 @@
+Izvestaj – Grupa B
+
+1. Pregled sezone
+
+ Pomocu funkcije `CASE WHEN` izracunao sam  broj pobeda domacina, neresenih utakmica i pobeda gostiju. Na ovaj nacin mozemo  uporediti efikasnost i rezultate utakmica između sezona.
+
+2. Pregled po mesecima
+
+U drugom zadatku analizirao sam broj utakmica, ukupan broj golova i prosecan broj golova po utakmici za svaki mesec. Koristio sam funkcije `YEAR` i `MONTH` za izdvajanje godine i meseca iz datuma utakmice.
+ Ova analiza omogucava da se utvrdi u kojem mesecu su utakmice bile najefikasnije.
+ 3. Publika i posecenost stadiona
+
+U trećem zadatku izracunao sam prosecnu posecenost i procentualnu popunjenost svakog stadiona.
+ Povezivanjem tabela `matches` i `stadiums` omoguceno je poredjenje posecenosti sa kapacitetom stadiona. Na osnovu rezultata mogućc je utvrditi koji stadioni imaju najvecu prosecnu posetu i popunjenost.
+
+4. Sudije
+
+U cetvrtom zadatku analizirao sam broj utakmica koje je svaki sudija sudio, ukupan broj dodeljenih kartona i prosecan broj kartona po utakmici.
+ Koristio sam funkcije `COUNT`, `SUM` i `AVG`. 
+
+ 5. Najbolji strelci i asistenti
+
+U petom zadatku izdvojeno je pet igraca sa najvecim brojem postignutih golova i pet igraca sa najvecim brojem evidentiranih asistencija. 
+Za brojanje golova korisceni su dogadjaji `goal` i `penalty_goal`, dok su za asistencije korisceni povezani igraci iz kolone `related_player_id` kod dogadjaja `goal`. 
+Rezultati su sortirani od najveceg ka najmanjem broju golova, odnosno asistencija.
+
+6. Kvalitet podataka
+
+U sestom zadatku izvrsene su provere kvaliteta podataka.
+
+**Prvi problem – nepostojeci igraci:** Povezivanjem tabela `match_events` i `players` pomoću `LEFT JOIN` pronadjena su dva identifikatora igraca koja se pojavljuju u dogadjajima utakmica, ali ne postoje u tabeli igrača. 
+Ovo predstavlja problem sa povezanoscu podataka i moze uticati na tacnost statistike igraca.
+
+**Drugi problem – nedostajuci podaci o poseti:** Pomoću uslova `attendance IS NULL` pronadjene su utakmice za koje nije evidentiran podatak o broju gledalaca. 
+Ovaj nedostatak ne mora nuzno predstavljati gresku u unosu, ali moze uticati na tacnost analize posecenosti stadiona. Potrebno je razlikovati nedostajući podatak od utakmica koje su odigrane bez publike.
